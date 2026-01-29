@@ -27,7 +27,7 @@ app.post("/create-order", async (req, res) => {
 
   try {
     const order = await instance.orders.create(options);
-    // saving to db simulation lol
+    // Saving to DB Simulation LOL
     orders.push(order);
     console.log("\nCurrent orders:", orders);
 
