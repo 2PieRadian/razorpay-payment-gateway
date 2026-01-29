@@ -1,6 +1,5 @@
 import express from "express";
-import dotenv from "dotenv";
-dotenv.config();
+import "dotenv/config";
 import Razorpay from "razorpay";
 import cors from "cors";
 import crypto from "crypto";
