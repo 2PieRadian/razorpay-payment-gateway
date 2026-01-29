@@ -46,7 +46,7 @@ app.post(
   "/webhook/razorpay",
   express.raw({ type: "application/json" }),
   async (req, res) => {
-    console.log("🔥 Razorpay webhook hit");
+    console.log("Razorpay webhook got hit");
 
     const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET;
     if (!webhookSecret) {
@@ -60,17 +60,17 @@ app.post(
       .digest("hex");
 
     if (signature !== expectedSignature) {
-      console.log("❌ Invalid webhook signature");
+      console.log("Invalid webhook signature");
       return res.status(400).json({ message: "Invalid signature" });
     }
 
     const event = JSON.parse(req.body.toString());
-    console.log("✅ Signature verified");
+    console.log("Signature verified");
 
     if (event.event === "payment.captured") {
       // Handle payment captured event
       const payment = event.payload.payment.entity;
-      console.log("💰 PAYMENT CONFIRMED:", payment.id);
+      console.log("Payment Confirmed:", payment.id);
     }
 
     res.status(200).json({ message: "Webhook received" });
